@@ -4,7 +4,10 @@
   "description": "PerfAnalytics Dashboard",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "webpack -p"
+    "build": "webpack -p",
+    "prettier": "prettier **/*.{js,jsx,json,md,html}",
+    "prettier:check": "npm run prettier -- --check",
+    "prettier:fix": "npm run prettier -- --write"
   },
   "repository": {
     "type": "git",
@@ -37,6 +40,7 @@
     "html-webpack-plugin": "^4.4.1",
     "mini-css-extract-plugin": "^0.11.2",
     "node-sass": "^4.14.1",
+    "prettier": "^2.1.2",
     "sass-loader": "^10.0.2",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
