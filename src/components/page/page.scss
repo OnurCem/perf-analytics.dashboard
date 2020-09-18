@@ -1,0 +1,17 @@
+.ant-layout {
+  height: 100%;
+
+  .ant-layout-header {
+    color: #ffffff;
+  }
+
+  .ant-layout-content {
+    padding: 0 50px;
+
+    .inner-content {
+      display: flex;
+
+      padding: 24px;
+    }
+  }
+}
