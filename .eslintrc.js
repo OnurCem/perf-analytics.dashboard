@@ -12,7 +12,7 @@ module.exports = {
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': 'error',
     'import/prefer-default-export': 'off',
-    'import/extensions': ['error', 'always', { js: 'never', ts: 'never' }],
+    'import/extensions': ['error', 'always', { js: 'never', ts: 'never', tsx: 'never' }],
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
   },
   parserOptions: {
