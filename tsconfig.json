@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "jsx": "react",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "baseUrl": "./src",
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*"]
+}
