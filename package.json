@@ -1,0 +1,45 @@
+{
+  "name": "perf-analytics.dashboard",
+  "version": "1.0.0",
+  "description": "PerfAnalytics Dashboard",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OnurCem/perf-analytics.dashboard.git"
+  },
+  "keywords": [
+    "performance",
+    "metrics"
+  ],
+  "author": {
+    "name": "Onur Cem Senel",
+    "email": "onurcemsenel@gmail.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OnurCem/perf-analytics.dashboard/issues"
+  },
+  "homepage": "https://github.com/OnurCem/perf-analytics.dashboard#readme",
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.3.0",
+    "html-webpack-plugin": "^4.4.1",
+    "mini-css-extract-plugin": "^0.11.2",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^10.0.2",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
