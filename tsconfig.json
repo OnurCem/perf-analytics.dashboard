@@ -7,8 +7,10 @@
     "strict": true,
     "baseUrl": "./src",
     "paths": {
-      "@environment": ["config/env.local.ts"]
+      "@environment": ["config/env.local.ts"],
+      "img/*": ["../assets/img/*"]
     },
+    "typeRoots": ["node_modules/@types", "src/types"],
     "outDir": "./dist"
   },
   "include": ["src/**/*"]

@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const JS_JSX_TS_TSX_PATTERN = /\.(js|ts)x?$/i;
 const SASS_PATTERN = /\.s[ac]ss$/i;
+const ASSET_PATTERN = /\.(jpe?g|png|svg|gif)$/i;
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -40,6 +41,11 @@ module.exports = {
           'sass-loader',
         ],
       },
+      {
+        test: ASSET_PATTERN,
+        exclude: /node_modules/,
+        loader: 'file-loader',
+      },
     ],
   },
   plugins: [
@@ -58,7 +64,7 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
-    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    modules: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'assets'), 'node_modules'],
     alias: {
       '@environment': path.resolve(__dirname, `src/config/env.${isDev ? 'local' : 'prod'}.ts`),
     },
