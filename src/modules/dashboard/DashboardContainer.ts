@@ -16,15 +16,7 @@ const selectMetricsForDashboard = createSelector([selectMetrics], (metrics) => {
     mappedMetrics[metric.name] =
       metric.name === METRIC_NAMES.RESOURCE
         ? metric.values
-        : [
-            {
-              id: metric.name,
-              data: metric.values.map((metricValue) => ({
-                x: metricValue.measureTime,
-                y: metricValue.duration,
-              })),
-            },
-          ];
+        : metric.values.map((metricValue) => [new Date(metricValue.measureTime).getTime(), metricValue.duration]);
   });
 
   return mappedMetrics;

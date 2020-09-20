@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Card, Table, Empty, DatePicker, Divider } from 'antd';
-import { Serie } from '@nivo/line';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Moment } from 'moment';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { RangeValue } from 'rc-picker/lib/interface';
 
 import Page from 'components/page/Page';
-import LineChart from 'components/chart/LineChart';
+import LineChart, { LineChartData } from 'components/chart/LineChart';
 import { METRIC_NAMES } from 'constants/metricContants';
 
 import 'modules/dashboard/dashboard.scss';
@@ -35,7 +34,7 @@ const TABLE_COLUMNS = [
 
 interface DashboardProps {
   fetchMetrics: (startDate?: string, endDate?: string) => void;
-  metrics: Record<string, Serie[]>;
+  metrics: Record<string, LineChartData[]>;
   loading: boolean;
 }
 
@@ -71,7 +70,11 @@ export default ({ fetchMetrics, metrics, loading }: DashboardProps): JSX.Element
           return (
             <Col key={metricName} xs={24} sm={24} md={24} lg={12} xl={12} xxl={6}>
               <Card title={CHART_TITLES[metricName]} loading={loading}>
-                {chartData ? <LineChart data={chartData} /> : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
+                {chartData ? (
+                  <LineChart data={chartData} seriesName={CHART_TITLES[metricName]} />
+                ) : (
+                  <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                )}
               </Card>
             </Col>
           );

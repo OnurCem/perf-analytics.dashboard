@@ -1,37 +1,33 @@
 import React from 'react';
-import { ResponsiveLine, LineSvgProps } from '@nivo/line';
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
 
-import 'components/chart/line-chart.scss';
+const options = {
+  title: null,
+  xAxis: {
+    type: 'datetime',
+  },
+  yAxis: {
+    title: null,
+  },
+  legend: {
+    enabled: false,
+  },
+  credits: {
+    enabled: false,
+  },
+};
 
-export default ({ data }: LineSvgProps): JSX.Element => (
+export type LineChartData = [number, number];
+
+interface LineChartProps {
+  data: LineChartData[];
+  seriesName: string;
+}
+
+export default ({ data, seriesName }: LineChartProps): JSX.Element => (
   <div className="line-chart-container">
-    <ResponsiveLine
-      data={data}
-      margin={{ top: 10, right: 10, bottom: 100, left: 50 }}
-      xScale={{ type: 'time', format: '%Y-%m-%dT%H:%M:%S.%L%Z' }}
-      yScale={{ type: 'linear', min: 'auto', max: 'auto' }}
-      axisTop={null}
-      axisRight={null}
-      xFormat="time:%Y-%m-%dT%H:%M:%S.%L%Z"
-      axisBottom={{
-        orient: 'bottom',
-        tickSize: 5,
-        tickPadding: 5,
-        tickRotation: 90,
-        tickValues: 'every 1 minute',
-        format: '%d.%m.%Y %H:%M',
-      }}
-      axisLeft={{
-        orient: 'left',
-        tickSize: 5,
-        tickPadding: 5,
-        tickRotation: 0,
-      }}
-      pointSize={10}
-      pointColor={{ theme: 'background' }}
-      pointBorderWidth={2}
-      pointBorderColor={{ from: 'serieColor' }}
-      useMesh
-    />
+    {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
+    <HighchartsReact highcharts={Highcharts} options={{ ...options, series: [{ name: seriesName, data }] }} />
   </div>
 );
