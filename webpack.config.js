@@ -59,6 +59,9 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    alias: {
+      '@environment': path.resolve(__dirname, `src/config/env.${isDev ? 'local' : 'prod'}.ts`),
+    },
   },
   devServer: {
     port: 3000,

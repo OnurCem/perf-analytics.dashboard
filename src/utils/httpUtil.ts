@@ -1,7 +1,10 @@
 import axios, { AxiosPromise, AxiosRequestConfig } from 'axios';
 
+// eslint-disable-next-line import/no-unresolved
+import { API_URL } from '@environment';
+
 export const makeRequest = (config: AxiosRequestConfig): AxiosPromise =>
   axios({
     ...config,
-    baseURL: 'http://localhost:8080/', // TODO Get from env variable
+    baseURL: API_URL as string,
   });

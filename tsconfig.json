@@ -6,6 +6,9 @@
     "esModuleInterop": true,
     "strict": true,
     "baseUrl": "./src",
+    "paths": {
+      "@environment": ["config/env.local.ts"]
+    },
     "outDir": "./dist"
   },
   "include": ["src/**/*"]
