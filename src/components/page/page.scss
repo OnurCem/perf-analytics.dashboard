@@ -1,5 +1,6 @@
 .ant-layout {
   height: 100%;
+  overflow: auto;
 
   .ant-layout-header {
     color: #ffffff;
@@ -9,8 +10,6 @@
     padding: 0 50px;
 
     .inner-content {
-      display: flex;
-
       padding: 24px;
     }
   }

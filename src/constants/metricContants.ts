@@ -1,0 +1,7 @@
+export const METRIC_NAMES = {
+  FCP: 'FCP',
+  TTFB: 'TTFB',
+  DOM_LOAD: 'DOM_LOAD',
+  WINDOW_LOAD: 'WINDOW_LOAD',
+  RESOURCE: 'RESOURCE',
+};

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import store from 'common/store';
-import Dashboard from 'modules/dashboard/Dashboard';
+import DashboardContainer from 'modules/dashboard/DashboardContainer';
 
 import 'app.scss';
 
@@ -13,7 +13,7 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Route exact path="/">
-          <Dashboard />
+          <DashboardContainer />
         </Route>
       </Switch>
     </Router>
