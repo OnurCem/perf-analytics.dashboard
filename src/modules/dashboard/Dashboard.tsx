@@ -1,12 +1,18 @@
-import React, { useEffect } from 'react';
-import { Row, Col, Card, Table, Empty } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Row, Col, Card, Table, Empty, DatePicker, Divider } from 'antd';
 import { Serie } from '@nivo/line';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Moment } from 'moment';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { RangeValue } from 'rc-picker/lib/interface';
 
 import Page from 'components/page/Page';
 import LineChart from 'components/chart/LineChart';
 import { METRIC_NAMES } from 'constants/metricContants';
 
 import 'modules/dashboard/dashboard.scss';
+
+const { RangePicker } = DatePicker;
 
 const CHARTS = [METRIC_NAMES.TTFB, METRIC_NAMES.FCP, METRIC_NAMES.DOM_LOAD, METRIC_NAMES.WINDOW_LOAD];
 const CHART_TITLES = {
@@ -34,12 +40,30 @@ interface DashboardProps {
 }
 
 export default ({ fetchMetrics, metrics, loading }: DashboardProps): JSX.Element => {
+  const [selectedDateRange, setSelectedDateRange] = useState([] as string[]);
+
   useEffect(() => {
-    fetchMetrics();
-  }, [fetchMetrics]);
+    const [startDate, endDate] = selectedDateRange;
+
+    fetchMetrics(startDate, endDate);
+  }, [fetchMetrics, selectedDateRange]);
+
+  const handleDateChange = (values: RangeValue<Moment>): void => {
+    const [startDate, endDate] = values ? (values as Moment[]) : [];
+
+    if (startDate && endDate) {
+      setSelectedDateRange([startDate.toISOString(), endDate.toISOString()]);
+    } else {
+      setSelectedDateRange([]);
+    }
+  };
 
   return (
     <Page>
+      <Row>
+        <RangePicker onChange={handleDateChange} showTime />
+      </Row>
+      <Divider />
       <Row gutter={[24, 24]} justify="center">
         {CHARTS.map((metricName) => {
           const chartData = metrics[metricName];
@@ -55,7 +79,7 @@ export default ({ fetchMetrics, metrics, loading }: DashboardProps): JSX.Element
       </Row>
       <Row>
         <Table
-          rowKey="resourceName"
+          rowKey="measureTime"
           dataSource={metrics[METRIC_NAMES.RESOURCE]}
           columns={TABLE_COLUMNS}
           loading={loading}
