@@ -3,7 +3,10 @@
   overflow: auto;
 
   .ant-layout-header {
-    color: #ffffff;
+    .logo {
+      width: 150px;
+      height: 45px;
+    }
   }
 
   .ant-layout-content {
