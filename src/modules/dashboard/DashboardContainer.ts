@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
 
 import Dashboard from 'modules/dashboard/Dashboard';
-import { fetchMetrics } from 'modules/dashboard/dashboardSlice';
+import { getMetrics, fetchMetrics } from 'modules/dashboard/dashboardSlice';
+import { isActionsProcessing } from 'common/commonSelectors';
 import { RootState } from 'common/rootReducer';
 import { METRIC_NAMES } from 'constants/metricContants';
 
@@ -31,6 +32,7 @@ const selectMetricsForDashboard = createSelector([selectMetrics], (metrics) => {
 
 const mapStateToProps = (state: RootState) => ({
   metrics: selectMetricsForDashboard(state),
+  loading: isActionsProcessing(state, getMetrics.type),
 });
 
 const mapDispatchToProps = { fetchMetrics };

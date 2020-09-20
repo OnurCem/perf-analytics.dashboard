@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Row, Col, Card, Table } from 'antd';
+import { Row, Col, Card, Table, Empty } from 'antd';
 import { Serie } from '@nivo/line';
 
 import Page from 'components/page/Page';
@@ -30,9 +30,10 @@ const TABLE_COLUMNS = [
 interface DashboardProps {
   fetchMetrics: (startDate?: string, endDate?: string) => void;
   metrics: Record<string, Serie[]>;
+  loading: boolean;
 }
 
-export default ({ fetchMetrics, metrics }: DashboardProps): JSX.Element => {
+export default ({ fetchMetrics, metrics, loading }: DashboardProps): JSX.Element => {
   useEffect(() => {
     fetchMetrics();
   }, [fetchMetrics]);
@@ -45,13 +46,20 @@ export default ({ fetchMetrics, metrics }: DashboardProps): JSX.Element => {
 
           return (
             <Col key={metricName} xs={24} sm={24} md={24} lg={12} xl={12} xxl={6}>
-              <Card title={CHART_TITLES[metricName]}>{chartData && <LineChart data={chartData} />}</Card>
+              <Card title={CHART_TITLES[metricName]} loading={loading}>
+                {chartData ? <LineChart data={chartData} /> : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
+              </Card>
             </Col>
           );
         })}
       </Row>
       <Row>
-        <Table rowKey="resourceName" dataSource={metrics[METRIC_NAMES.RESOURCE]} columns={TABLE_COLUMNS} />
+        <Table
+          rowKey="resourceName"
+          dataSource={metrics[METRIC_NAMES.RESOURCE]}
+          columns={TABLE_COLUMNS}
+          loading={loading}
+        />
       </Row>
     </Page>
   );
