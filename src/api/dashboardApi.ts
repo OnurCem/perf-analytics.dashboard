@@ -8,6 +8,7 @@ export interface GetMetricsResponse {
     values: {
       duration: number;
       measureTime: string;
+      resourceName?: string;
     }[];
   }[];
 }

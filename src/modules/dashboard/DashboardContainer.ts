@@ -1,25 +1,29 @@
 import { connect } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
-import { Serie } from '@nivo/line';
 
 import Dashboard from 'modules/dashboard/Dashboard';
 import { fetchMetrics } from 'modules/dashboard/dashboardSlice';
 import { RootState } from 'common/rootReducer';
+import { METRIC_NAMES } from 'constants/metricContants';
 
 const selectMetrics = (state: RootState) => state.dashboard.metrics;
 const selectMetricsForDashboard = createSelector([selectMetrics], (metrics) => {
-  const mappedMetrics: Record<string, Serie[]> = {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const mappedMetrics: Record<string, any[]> = {};
 
   metrics.forEach((metric) => {
-    mappedMetrics[metric.name] = [
-      {
-        id: metric.name,
-        data: metric.values.map((metricValue) => ({
-          x: metricValue.measureTime,
-          y: metricValue.duration,
-        })),
-      },
-    ];
+    mappedMetrics[metric.name] =
+      metric.name === METRIC_NAMES.RESOURCE
+        ? metric.values
+        : [
+            {
+              id: metric.name,
+              data: metric.values.map((metricValue) => ({
+                x: metricValue.measureTime,
+                y: metricValue.duration,
+              })),
+            },
+          ];
   });
 
   return mappedMetrics;
