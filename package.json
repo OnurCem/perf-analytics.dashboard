@@ -7,7 +7,7 @@
     "build": "NODE_ENV='production' webpack -p",
     "lint": "eslint src/ --ext .js,.ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
-    "prettier": "prettier **/*.{ts,tsx,json,md,html,scss}",
+    "prettier": "prettier '**/*.{ts,tsx,json,md,html,scss}'",
     "prettier:check": "npm run prettier -- --check",
     "prettier:fix": "npm run prettier -- --write"
   },
