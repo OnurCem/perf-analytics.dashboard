@@ -62,6 +62,12 @@ module.exports = {
     }),
     new MiniCssExtractPlugin(),
   ],
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      name: false,
+    },
+  },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
     modules: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'assets'), 'node_modules'],
